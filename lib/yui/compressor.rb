@@ -95,7 +95,8 @@ module YUI #:nodoc:
           # windows shells tend to blow up here when the command fails
           raise RuntimeError, "compression failed: %s" % e.message
         ensure
-          tempfile.close!
+          # tempfile.close!
+          tempfile.close # Don't delete the file
         end
 
         if $?.exitstatus.zero?

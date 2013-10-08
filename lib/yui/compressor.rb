@@ -96,7 +96,7 @@ module YUI #:nodoc:
           # windows shells tend to blow up here when the command fails
           raise RuntimeError, "compression failed: %s" % e.message
         ensure
-          FileUtils.cp tempfile.path, "/tmp/yui_debug#{Time.now.to_i}.js"
+          FileUtils.cp tempfile.path, "#{tempfile.path}.kept"
           tempfile.close!
         end
 

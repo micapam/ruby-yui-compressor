@@ -2,6 +2,7 @@ require "shellwords"
 require "stringio"
 require "tempfile"
 require "rbconfig"
+require "fileutils"
 
 module YUI #:nodoc:
   class Compressor
@@ -95,8 +96,8 @@ module YUI #:nodoc:
           # windows shells tend to blow up here when the command fails
           raise RuntimeError, "compression failed: %s" % e.message
         ensure
-          # tempfile.close!
-          tempfile.close # Don't delete the file
+          FileUtils.cp tempfile.path, "/tmp/yui_debug#{Time.now.to_i}.js"
+          tempfile.close!
         end
 
         if $?.exitstatus.zero?

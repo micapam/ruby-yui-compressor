@@ -96,7 +96,7 @@ module YUI #:nodoc:
           # windows shells tend to blow up here when the command fails
           raise RuntimeError, "compression failed: %s" % e.message
         ensure
-          FileUtils.cp tempfile.path, "#{tempfile.path}.kept" unless $?.exitstatus.zero?
+          FileUtils.cp tempfile.path, "#{tempfile.path}.fail" unless $?.exitstatus.zero?
           tempfile.close!
         end
 
